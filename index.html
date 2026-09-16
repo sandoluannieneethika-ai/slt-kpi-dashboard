@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SLT KPI Dashboard – London Borough of Ealing</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: url('background.png') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .overlay {
+        background: rgba(255,255,255,0.60);
+        min-height: 100vh;
+        padding-bottom: 40px;
+    }
+
+    header {
+        background: #006341;
+        color: white;
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        border-bottom: 4px solid white;
+    }
+
+    header img {
+        height: 60px;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 26px;
+        font-weight: bold;
+    }
+
+    .menu-container {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+
+    .menu-btn {
+        background: #006341;
+        color: white;
+        padding: 18px 30px;
+        border-radius: 10px;
+        border: none;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.25s;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .menu-btn:hover {
+        background: #004d2a;
+        transform: scale(1.08);
+    }
+
+    .menu-btn.active {
+        background: white;
+        color: #006341;
+        border: 2px solid #006341;
+    }
+
+    .tab {
+        display: none;
+        padding: 20px;
+        margin: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    table, th, td {
+        border: 1px solid #ccc;
+    }
+
+    th {
+        background: #e6f4ec;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+    }
+
+    .pill {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 20px;
+        background: #e6f4ec;
+        border: 1px solid #006341;
+        font-size: 12px;
+        margin-top: 4px;
+    }
+
+    ul li {
+        margin-bottom: 20px;
+    }
+
+    .status-green {
+        color: #006341;
+        font-weight: bold;
+    }
+
+    .status-red {
+        color: #cc0000;
+        font-weight: bold;
+    }
+
+    /* MODAL POPUP */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        padding-top: 80px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+        background: white;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        width: 70%;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        white-space: pre-line;
+    }
+
+    .close {
+        color: #006341;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .read-more-btn {
+        background: #006341;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .read-more-btn:hover {
+        background: #004d2a;
+    }
+</style>
+
+<script>
+function openTab(tabId, button) {
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(t => t.style.display = 'none');
+
+    const buttons = document.querySelectorAll('.menu-btn');
+    buttons.forEach(b => b.classList.remove('active'));
+
+    document.getElementById(tabId).style.display = 'block';
+    button.classList.add('active');
+}
+
+function openModal(id) {
+    document.getElementById(id).style.display = "block";
+}
+
+function closeModal(id) {
+    document.getElementById(id).style.display = "none";
+}
+
+window.onload = function() {
+    const firstButton = document.querySelector('.menu-btn');
+    openTab('tab-dashboard', firstButton);
+};
+</script>
+
+</head>
+
+<body>
+<div class="overlay">
+
+<header>
+    <img src="logo.png" alt="Ealing Logo">
+    <h1>SLT KPI Dashboard – London Borough of Ealing</h1>
+</header>
+
+<div class="menu-container">
+    <button class="menu-btn" onclick="openTab('tab-dashboard', this)">Dashboard</button>
+    <button class="menu-btn" onclick="openTab('tab-tutorial', this)">Tutorial</button>
+    <button class="menu-btn" onclick="openTab('tab-kpi', this)">KPI List</button>
+    <button class="menu-btn" onclick="openTab('tab-changes', this)">Dashboard Development Log</button>
+</div>
+
+<!-- DASHBOARD TAB -->
+<div id="tab-dashboard" class="tab">
+    <h2>SLT KPI Dashboard</h2>
+    <p>This is the live SLT KPI Dashboard for Housing.</p>
+
+    <p>
+        <a href="https://app.powerbi.com/groups/73fb0612-1398-492a-b9d0-4cc878efb48d/reports/3641b03a-c164-421e-8792-ff97d9974976/da65be42dbc690a163c8?ctid=013a8c43-8287-4c8b-878b-131e30cdb9f3&experience=power-bi"
+           target="_blank"><strong>Open SLT KPI Dashboard in Power BI</strong></a>
+    </p>
+
+    <span class="pill">Owner: Housing Data – Annie Neethika Sandolu</span>
+</div>
+
+<!-- TUTORIAL TAB -->
+<div id="tab-tutorial" class="tab">
+    <h2>Dashboard Tutorial</h2>
+    <p>Watch the walkthrough directly below:</p>
+
+    <div style="text-align:center;">
+        <iframe 
+            src="https://www.canva.com/design/DAHSvpHPynk/FZHy0CLNhHAFyazkXMVnDA/watch?embed" 
+            width="900" 
+            height="500" 
+            style="border: none; border-radius: 10px;"
+            allowfullscreen>
+        </iframe>
+    </div>
+</div>
+
+<!-- KPI TAB -->
+<div id="tab-kpi" class="tab">
+    <h2>List of KPIs in the Dashboard</h2>
+    <p>Key performance indicators monitored in the SLT KPI Dashboard.</p>
+
+    <table>
+        <tr>
+            <th>KPI / Measure</th>
+            <th>Power BI Page</th>
+            <th>Visual Title</th>
+            <th>Target</th>
+            <th>Already Collected?</th>
+            <th>Definition / Why we measure</th>
+        </tr>
+
+        <tr><td>% decisions (Prevention & Relief) within 56 days</td><td>HCLIC</td><td>Decision Timeliness</td><td>TBC – should be 100%</td><td>No</td><td>How long it takes us to make a decision; how long people stay in TA without a decision.</td></tr>
+        <tr><td>% homeless decisions overturned following s202 review</td><td>Reviews</td><td>Overturned Decisions</td><td>25% – lower is better</td><td>Yes</td><td>Number of reviews and how many were overturned – robustness of decision‑making.</td></tr>
+        <tr><td>P7 cases opened/closed – caseload per officer</td><td>Officer Caseload</td><td>P7 Activity</td><td>TBC</td><td>No</td><td>Measure officer performance, workload allocation and manageability.</td></tr>
+        <tr><td>PHP completed within 72 hours following assessment</td><td>PHP</td><td>PHP Completion</td><td>TBC – should be 100%</td><td>No</td><td>Internal measure of how the team is doing on Personal Housing Plans.</td></tr>
+        <tr><td>% successful prevention</td><td>Prevention Outcomes</td><td>% Successful Prevention</td><td>65% target</td><td>Yes</td><td>Number of cases closed due to successful prevention of homelessness.</td></tr>
+        <tr><td>% successful relief</td><td>Relief Outcomes</td><td>% Successful Relief</td><td>35% target</td><td>Yes</td><td>Number of cases closed due to successful relief duty outcomes.</td></tr>
+        <tr><td>% eligible rough sleepers</td><td>Rough Sleepers</td><td>% Eligible Rough Sleepers</td><td>TBC – higher is better</td><td>Yes</td><td>How many rough sleepers are eligible to receive public funds.</td></tr>
+        <tr><td>% intentional homeless decisions vs households accepted relief/main duty</td><td>Main Assessment Decisions</td><td>Intentionally Homeless</td><td>TBC</td><td>No</td><td>Percentage of intentionally homeless decisions as portion of duties owed.</td></tr>
+        <tr><td>% main duty decisions completed within 56 days of relief duty</td><td>Relief Outcomes</td><td>% Main Duty Decisions Within 56 Days</td><td>74 per month</td><td>Yes</td><td>Days between relief duty and main duty decision.</td></tr>
+        <tr><td>% not homeless decisions vs homeless applications</td><td>Initial Assessment</td><td>% Non Eligible Cases</td><td>TBC</td><td>No</td><td>Tracks demand and robustness of front door service.</td></tr>
+        <tr><td>% non‑priority decisions vs single people owed relief duty</td><td>Prevention / Relief Cases Open</td><td>% Non‑priority</td><td>TBC</td><td>No</td><td>Tracks demand and internal monitoring.</td></tr>
+        <tr><td>% long‑term rough sleepers</td><td>Rough Sleepers</td><td>% Long Term Rough Sleepers</td><td>TBC – lower is better</td><td>Yes</td><td>GLA definition – baseline for Ealing is 47.</td></tr>
+        <tr><td>Number of rough sleepers at any given period</td><td>Rough Sleepers</td><td>Monthly Rough Sleepers</td><td>TBC – lower is better</td><td>Yes</td><td>Bi‑monthly count of rough sleepers.</td></tr>
+        <tr><td>Number of children living in B&B</td><td>B&B</td><td>Total Number of Children</td><td>TBC – as low as possible</td><td>No</td><td>Statutory reporting.</td></tr>
+        <tr><td>Number of exits from TA</td><td>TA Exits</td><td>Total TA Exits</td><td>TBC – as high as possible</td><td>No</td><td>Households moved out of TA.</td></tr>
+        <tr><td>Number of families in B&B and those over 6 weeks</td><td>B&B</td><td>BB > 6 Weeks / BB Families</td><td>Should be 0</td><td>Yes</td><td>Statutory reporting.</td></tr>
+        <tr><td>Number of households in TA</td><td>Total TA</td><td>Total in TA</td><td>2500 – as low as possible</td><td>Yes</td><td>Snapshot of households in TA.</td></tr>
+        <tr><td>Number of move‑on resettlement</td><td>Resettlement</td><td>Move‑on</td><td>25 per month</td><td>Yes</td><td>Households resettled from TA.</td></tr>
+        <tr><td>Number of new placements into TA</td><td>TA Placements</td><td>Total TA Placements</td><td>40–60 per month</td><td>Yes</td><td>New placements into TA.</td></tr>
+        <tr><td>Number of presentations, prevention owed, relief owed</td><td>Initial Assessment</td><td>Assessments Made / Prevention Duty / Relief Duty</td><td>TBC</td><td>Yes</td><td>Tracks demand and internal monitoring.</td></tr>
+        <tr><td>Numbers and average cost per type of unit</td><td>Arrears and Credits</td><td>Gross Rent / Total Charges</td><td>TBC</td><td>No</td><td>Cost of hostel rooms, hotels, 1–4 bed units.</td></tr>
+        <tr><td>TA voids</td><td>Voids</td><td>Total Voids</td><td>10 per month</td><td>Yes</td><td>Number of TA voids remaining and let.</td></tr>
+    </table>
+</div>
+
+<!-- CHANGE LOG TAB -->
+<div id="tab-changes" class="tab">
+    <h2>Dashboard Development Log</h2>
+
+    <h3>Completed Changes</h3>
+    <ul>
+        <li class="status-green">
+            <strong>Kylie Gillham – Completed and signed off</strong><br>
+            <em>Summary:</em> Change data source to Jigsaw raw data and implement dashboard enhancements.<br>
+
+            <button class="read-more-btn" onclick="openModal('modalKylie')">
+                See the changes requested
+            </button>
+            <div style="margin-top:6px; font-size:13px; color:#006341;">
+                Note: All of the above have been completed and signed off by Kylie as satisfactory.
+            </div>
+        </li>
+    </ul>
+
+    <h3>Pending Changes</h3>
+    <ul>
+        <li class="status-red">
+            <strong>Ellen Kirk – Pending</strong><br>
+            <em>Summary:</em> Page titles, clearer chart labels, acronyms written out, and multiple visual improvements.<br>
+
+            <button class="read-more-btn" onclick="openModal('modalEllen')">
+                See the changes requested
+            </button>
+            <div style="margin-top:6px; font-size:13px; color:#cc0000;">
+                Note: Waiting for Housing Demand Team to confirm if changes should be made.
+            </div>
+        </li>
+
+        <li class="status-red">
+            <strong>Ricks Llewellyn‑Davies – Pending</strong><br>
+            <em>Summary:</em> Officer names, TA/B&B visual clarity, HB and rent field explanations, baselines and meaning from data.<br>
+
+            <button class="read-more-btn" onclick="openModal('modalRicks')">
+                See the changes requested
+            </button>
+            <div style="margin-top:6px; font-size:13px; color:#cc0000;">
+                Note: Waiting for Housing Demand Team to confirm if changes should be made.
+            </div>
+        </li>
+    </ul>
+</div>
+
+<!-- MODALS -->
+
+<!-- KYLIE FULL REQUEST -->
+<div id="modalKylie" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modalKylie')">&times;</span>
+        <h2>Change Request – Kylie Gillham (Completed)</h2>
+        <p>
+CHANGE THE DATA SOURCE FROM HCLIC report to the direct jigsaw raw data . Run and export all the data directly out of the jigsaw system and replce that data with the hlic reportand aong with that Other requests for the dashbaord were to:
+
+ensure all pages have a drill through to the clients (you have confired that this is already on the report but I was unable to do the drill through before I went on annual leave and today I have not been able to access the Power BI report, so it may be an issue my end. Once I have access I will check again and issues I will come back to you.
+Voids - to have a list of all voids and if we are paying for them i.e. PSLs/LIAs (@Natalie Richards - do you recall when you did that report for Stephen that showed our voids and the last payment date to help identify the number of voids were paying for? If so, can you please share this report with Annie or advise how Annie can get this report.
+Demand - One of the places we were trying to get to was to see a live update of houseing demand by bedsize. Grace did start this work, @Soji Adefugabi - There is a report that is produced of everyone in TA with a breakdown of number of under/over 18s in a household and if they are male or female. I had asked that you add the under/over 10 year olds to this report - can you please share this with Annie, myself and Gurpreet. I work with Gurpreet to agree the formula/calculation that can be used. Ideally this would be a live report as households enter and exit TA.
+Finace - To be able to see all rent accounts that do not have any charges on them (this means we are not charging the household any rent therefore it is unlikey that we are getting any income as well as those with no HB in payment. I know Soji has a rent arrears report that shows the HB status so he may be able to help here.
+SLT KPI no.6 - Just to add this KPI which I think you had said is quite straightforward. and mark the above request as completed and signed off by kyie stating that she is satisfied with the changes and that should hsow green
+        </p>
+    </div>
+</div>
+
+<!-- ELLEN FULL REQUEST -->
+<div id="modalEllen" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modalEllen')">&times;</span>
+        <h2>Change Request – Ellen Kirk (Pending)</h2>
+        <p>
+Comments applicable throughout:
+
+· Titles on each page would be helpful, particularly if someone wants to just screenshot a page at any point to add to their own presentation.
+
+· It would also be helpful to have titles on each chart which clearly explain what the chart shows, rather than the automatically generated titles which are sometimes unclear.
+
+· Personally, I like having visual borders (just a thin grey line, nothing fancy) to help make clear where each chart begins and ends, but that’s just a personal preference.
+
+· Where possible, having acronyms written out in full would help make it accessible to those who aren’t frontline housing officers.
+
+· The Ealing logo used on the homepages is the old logo.
+
+
+Households with no rent account:
+
+· Most addresses at Dame Gertrude Hostel are filtered out – why is this? Should the one that remains included also be filtered out?
+
+· Balance, weekly rent gross and net are all £0. Will this always be 0 in which case can we exclude those columns as they aren’t adding anything?
+
+· Ricks’ suggestion was to include name of officer dealing with each case to the table. Could we also add in a filter so people can easily search for their own cases?
+
+Total TA
+
+· Could we replace that chart with a bar per time period and a filter by tenancy type? We could then have a slicer for the time period and/or use a date hierarchy so if some people want to see a week by week change they can, and if others want to see month on month or quarter on quarter they can also do that.
+
+BB and BB > 6 weeks:
+
+· The Year, Quarter etc slicer goes back to 1977 but the data doesn’t go back that far. Could the slicer be changed to only show years for which there is data?
+
+· Some of the charts/ cards seem to be linked to the time slicer but others aren’t.
+
+· Does the BB page show just those that are under 6 weeks or is it all TA including those that are under 6 weeks (in contrast to the BB>6 page)?
+
+
+Voids:
+
+· Again, the time slicer seems to go very far back which might make people think we have data going that far back.
+
+Reasons for loss of homes:
+
+· There seems to be two very similar reasons in the tables relating to being required to leave accommodation due to the Home Office. Only one of these looks like it’s included in the card at the top. Should both be included or is it purposefully just the one?
+
+· Could the reasons in the tables be grouped using a hierarchy? Then they could be added to a bar chart to make it easier to visually compare which is the most common cause.
+
+Initial assessment:
+
+· Would the category ‘not threatened with homelessness within 56 days – not assisted’ also count as ‘not eligible’?
+
+Prevention relief open cases
+
+· Rather than having cards and filtering them by year, could there be a time series chart showing the number of duties commencing per year, and then keep the cards on the right showing the number of live cases?
+
+· Is it possible to track the KPI % over time?
+
+Prevention outcome + relief outcome:
+
+· Just out of curiosity - can a case be closed without a successful outcome?
+
+· I like that the charts are showing the situation over time. Perhaps each month could have 2 bars- one showing the number of cases that ended and the other showing the number that were successful. Given it’s currently 100% successful cases the bars would both be the same height, but it would help to make that clear.
+
+TA properties
+
+· What are the O, V, X tenancy statuses? Can these be written out?
+
+· Could the chart show the proportion of voids per tenancy type by using stacked bars?
+
+Resettlement:
+
+· Rather than have the lines on the chart for 2025 and 2026 overlap, could the months be grouped into quarters and you could fit both 2025 and 2026 side by
+
+side? Could add in a date hierarchy and a slicer so people can drill down to month level if they need to.
+
+Arrears and Credits:
+
+· Arrears and Credits says 4M in arrears, Total charges says sum of balance is 3M. Do these align?
+
+Gross rent:
+
+· What time period do the figures refer to?
+
+Rough sleepers:
+
+· Are the eligible and long-term categories mutually exclusive or will some people be in both?
+
+· It wasn’t immediately clear that the chart includes multiple years at once. Could this be added to the title of the chart to make it more clear?  this is not yet done so should be red and shold say waititng confirmation from Housing demand team if should go ahead and make the changes .
+        </p>
+    </div>
+</div>
+
+<!-- RICKS FULL REQUEST -->
+<div id="modalRicks" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('modalRicks')">&times;</span>
+        <h2>Change Request – Ricks Llewellyn‑Davies (Pending)</h2>
+        <p>
+Households with no rent account
+
+Might it be possible to have this table include the names of officer dealing with each case, perhaps structuring the table as per below
+
+Responsible Officer / PropertyID / Account No / Address
+
+That way managers can hold conversations with officers. There may, in many instances, be good reasons why a rent account is missing, but managers will want to investigate and so this extra level of data would be super helpful.
+
+Calculated Bedsizes using the different rules for TA and Discharge Duty by Accommodation type
+
+Is there any way of labelling the column headings in a way that a non-expert would understand? Headings like BBSC, BBSH, HSTANX etc… aren’t intuitively meaningful. I also wondered if more could be done to explain what these tables mean. Presumably, if our data was perfect, there should be no discrepancies. Is that correct? If so, what should managers and officers be doing to reduce discrepancies?
+
+Housing Benefit
+
+What do the headings (Full HB, Partial HB, No HB) actually mean in this table? How are they telling us about error?
+
+Total TA
+
+Again, is there a way of spelling out “tenancy type code” as the acronyms in that column don’t mean very much to the uninitiated.
+
+Also, I was confused by the headings at the top of the table. What is the “Sum of Gross Rent” actually measuring, likewise what’s the Sum of Net Rent” and why is the sum of net rent greater than the sum for gross rent (wouldn’t we expect it to be the other way around?). Likewise, what’s the Sum of Rent Charge?
+
+I also wasn’t convinced that a single line graph was the best representation of what you’re trying to show, as it’s not clear from the graph how the current state of affairs differs from the target state of affairs that we’re trying to achieve.
+
+BB
+
+I didn’t find the “BB Placements” graph especially illuminating. Surely this should show the number of households in BB accommodation each month, which clearly isn’t what it shows at the moment, as it only shows 1 or 2 households each month, whereas the table makes clear that there are a total of 45 households in BB accommodation.
+
+I thin there’s also something wrong with the total count for the number of children in BB. When I looked at the source table, I could only count 38 children, but the total on your page says 44. Can you take another look at this please?
+
+A more sensible way of representing progress towards the B&B placements target would be to use a single graph with time along the x axis and two Y axes. The left hand Y axis should show “Total Households in B&B Accommodation” and each month should have a two stacked histogram bars showing both the total and the number of those that are new placements for that month. The second Y axis should show “Total Number of Children in B&B Accommodation” and a line should plot this number month by month, as I imagine the total number of children in B7B accommodation is politically sensitive. I’ve mocked this up below to show what I’m suggesting. If you wanted to go a step further you could use stack bars that break down the data into for single person households and households with children for existing and new placements each month
+
+BB>6 Weeks
+
+Again, it’s not clear what your line graph is really showing here or why it’s important or why there’s was no count of the total number of children in BB>6weeks. Please replicate the above graph but for BB>6 Weeks
+
+Voids
+
+I will leave @Kylie Gillham to comment in more detail on this. However, as with other measures, I think the voids data needs to be presented in a way that makes it clear how well we’re progressing against a baseline or target.
+
+Reason for Loss of Home
+
+The most important reasons for loss of tenancy that we’re monitoring, as set out in the attached Northstars presentation, are
+
+Fewer admissions to TA because of tenancy failure, as measured against baseline.
+Reduced number of discharges to homelessness from key institutions against baseline.
+Reduced percentage of households accepted under a duty because they were “required to leave accommodation provided by Home Office as asylum support
+
+I imagine these are also the reasons that SLT will take the most interest in.
+
+You, therefore, need to find a way of representing reasons for loss of home in a way that draws out these key measures against meaningful baselines. I will leave it to you to consider how best to do this, perhaps with Ellen’s support.
+
+Prevention and Relief
+Again, are these numbers good or do they show that we’re faltering?
+
+Prevention Outcome
+
+This graph appears to show a rapid decline in homelessness prevention, but the number above then suggests we’ve succeeded in 100% of cases. What is it actually saying, and is there a more meaningful way to represent that graphically and numerically?
+
+Relief Outcome
+
+Same question as above.
+
+TA Properties
+
+Again, what is this showing and what is that telling us about our performance?
+
+TA Placements
+
+What period does the table refer to? Is it aligned with the graph? Are these latest results good or bad?
+
+TA Exits and Resettlement
+
+Again, a baseline is needed that tells us whether performance is improving or not.
+
+Overall, the theme is that this Dash needs to draw meaning from the data, rather than just present data to us. It needs to use meaningful baselines for each SLT measure to give an indication of whether things are improving or not and it needs to use meaningful graphs to help users visualise performance.  and this one same saying waiting housing demand toi confirm if we can ahead with the changes .
+        </p>
+    </div>
+</div>
+
+</div>
+</body>
+</html>
