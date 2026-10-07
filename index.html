@@ -209,7 +209,7 @@ window.onload = function() {
     <button class="menu-btn" onclick="openTab('tab-dashboard', this)">Dashboard</button>
     <button class="menu-btn" onclick="openTab('tab-tutorial', this)">Tutorial</button>
     <button class="menu-btn" onclick="openTab('tab-kpi', this)">KPI List</button>
-    <button class="menu-btn" onclick="openTab('tab-changes', this)">Dashboard Development Log</button>
+    <button class="menu-btn" onclick="openTab('tab-changes', this)">Dashboard Amendment Register </button>
     <button class="menu-btn" onclick="openTab('tab-amendments', this)">Request Additional Data / Amendment</button>
 </div>
 
@@ -288,15 +288,17 @@ window.onload = function() {
     <h2>Dashboard Amendment Register</h2>
 
     <p>
-        All submitted amendment requests are displayed below.
+        SharePoint prevents the amendment register from being displayed directly within this dashboard.
     </p>
 
-    <iframe
-        src="https://ealingcouncil.sharepoint.com/sites/HousingEnvironmentPerformanceTeam/Lists/SLT%20Dashboard%20Amendment%20Requests/AllItems.aspx"
-        width="100%"
-        height="900"
-        style="border:1px solid #cccccc;border-radius:8px;">
-    </iframe>
+    <a href="https://ealingcouncil.sharepoint.com/sites/HousingEnvironmentPerformanceTeam/Lists/SLT%20Dashboard%20Amendment%20Requests/AllItems.aspx"
+       target="_blank">
+
+        <button class="menu-btn">
+            Open Amendment Register
+        </button>
+
+    </a>
 
 </div>
 
@@ -312,10 +314,13 @@ window.onload = function() {
         dashboard improvements.
     </p>
 
-    <a href="https://ealingcouncil.sharepoint.com/sites/HousingEnvironmentPerformanceTeam/_layouts/15/listform.aspx?PageType=8&ListId=%7B3D3104C3-68D3-4E48-ABC5-44E811D91442%7D&RootFolder=%2Fsites%2FHousingEnvironmentPerformanceTeam%2FLists%2FSLT%20Dashboard%20Amendment%20Requests"
-       target="_blank"">
-            Submit New Request
-        </button>
+   https://ealingcouncil.sharepoint.com/sites/HousingEnvironmentPerformanceTeam/_layouts/15/listform.aspx?PageType=8&ListId=%7B3D3104C3-68D3-4E48-ABC5-44E811D91442%7D&RootFolder=%2Fsites%2FHousingEnvironmentPerformanceTeam%2FLists%2FSLT%20Dashboard%20Amendment%20Requests
+
+    <button class="menu-btn">
+        Submit New Request
+    </button>
+
+</a>
 
     </a>
 
