@@ -210,6 +210,7 @@ window.onload = function() {
     <button class="menu-btn" onclick="openTab('tab-tutorial', this)">Tutorial</button>
     <button class="menu-btn" onclick="openTab('tab-kpi', this)">KPI List</button>
     <button class="menu-btn" onclick="openTab('tab-changes', this)">Dashboard Development Log</button>
+    <button class="menu-btn" onclick="openTab('tab-amendments', this)">Request Additional Data / Amendment</button>
 </div>
 
 <!-- DASHBOARD TAB -->
@@ -527,7 +528,126 @@ Overall, the theme is that this Dash needs to draw meaning from the data, rather
         </p>
     </div>
 </div>
+<!-- REQUEST ADDITIONAL DATA / AMENDMENT TAB -->
 
+<div id="tab-amendments" class="tab">
+
+    <h2>Request Additional Data / Amendment</h2>
+
+    <p>
+        This area allows users to submit requests for dashboard improvements,
+        additional data requirements, KPI amendments and reporting enhancements.
+    </p>
+
+    <a href="https://ealingcouncil.sharepoint.com/sites/HousingEnvironmentPerformanceTeam/_layouts/15/listform.aspx?PageType=8&ListId=%7B3D3104C3-68D3-4E48-ABC5-44E811D91442%7D&RootFolder=%2Fsites%2FHousingEnvironmentPerformanceTeam%2FLists%2FSLT%20Dashboard%20Amendment%20Requests&Source=https%3A%2F%2Fealingcouncil.sharepoint.com%2Fsites%2FHousingEnvironmentPerformanceTeam%2FLists%2FSLT%2520Dashboard%2520Amendment%2520Requests%2FAllItems.aspx%3FnpsAction%3DcreateList&ContentTypeId=0x0100EA2A52185099764593A4E67E5C07679300713C714CEE04ED4D8A988690C9F988E8"
+       target="_blank">
+
+        <button class="menu-btn">
+            Submit New Request
+        </button>
+
+    </a>
+
+    <br><br>
+
+    <div style="
+        background:#f8f8f8;
+        padding:20px;
+        border-radius:10px;
+        border:1px solid #cccccc;
+    ">
+
+        <h3>Amendment Workflow</h3>
+
+        <ol>
+            <li>Submit an amendment request using the button above.</li>
+
+            <li>
+                Request enters the queue as
+                <strong style="color:#cc0000;">
+                    Waiting for Approval from Performance Team
+                </strong>.
+            </li>
+
+            <li>
+                Once approved, status changes to
+                <strong style="color:#ff9900;">
+                    In Progress
+                </strong>.
+            </li>
+
+            <li>
+                Following development completion, the request moves to
+                <strong style="color:#0066cc;">
+                    Awaiting Sign Off from HD
+                </strong>.
+            </li>
+
+            <li>
+                Following approval from Housing Demand, the request becomes
+                <strong style="color:#006341;">
+                    Completed
+                </strong>.
+            </li>
+        </ol>
+
+    </div>
+
+    <br>
+
+    <div style="
+        background:#e6f4ec;
+        border-left:6px solid #006341;
+        padding:20px;
+        border-radius:10px;
+    ">
+
+        <h3>Automatic Notifications</h3>
+
+        <ul>
+            <li>Waiting for Approval from Performance Team</li>
+            <li>In Progress</li>
+            <li>Awaiting Sign Off from HD</li>
+            <li>Completed</li>
+        </ul>
+
+        <p>
+            Email notifications are automatically generated when amendment requests move between statuses.
+        </p>
+
+    </div>
+
+    <br>
+
+    <div style="
+        background:white;
+        border:1px solid #cccccc;
+        padding:20px;
+        border-radius:10px;
+    ">
+
+        <h3>Amendment Register</h3>
+
+        <p>
+            The amendment register is currently managed through the SharePoint amendment list.
+        </p>
+
+        <p>
+            Future enhancement:
+        </p>
+
+        <ul>
+            <li>Display all amendment requests directly within this dashboard.</li>
+            <li>Display request number.</li>
+            <li>Display request date.</li>
+            <li>Display current status.</li>
+            <li>Display sign-off status.</li>
+            <li>Display completion history.</li>
+        </ul>
+
+    </div>
+
+</div>
 </div>
 </body>
 </html>
